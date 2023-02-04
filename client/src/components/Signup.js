@@ -41,7 +41,7 @@ function Signup() {
     } else if (password !== cpassword) {
       alert(" pls type same password");
     } else {
-      // console.log("Ressgistration successfully done");
+      console.log("Ressgistration successfully done");
 
       const data = await fetch("/register", {
         method: "POST",
@@ -57,7 +57,7 @@ function Signup() {
       });
 
       const res = await data.json();
-      // console.log(res);
+      console.log(res);
       if (res.status === 201) {
         alert("Registration successfully");
         setInputValues({
@@ -73,7 +73,7 @@ function Signup() {
 
   return (
     <div>
-      <form action="">
+      <form action="http://localhost:5000/register">
         <div>
           <label htmlFor="name">Name</label>
           <input
