@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const history = useNavigate();
   const [passwordShow, setPasswordShow] = useState(false);
   const [inputVal, setInputVal] = useState({
     email: "",
@@ -18,45 +20,6 @@ function Login() {
     });
   };
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-
-  //   const { email, password } = inputVal;
-
-  //   if (email === "") {
-  //     alert("Please enter your email");
-  //   } else if (!email.includes("@")) {
-  //     alert("Please enter valid email");
-  //   } else if (password === "") {
-  //     alert("Please enter your password");
-  //   } else if (password.length < 6) {
-  //     alert("pass must be 6 char");
-  //   } else {
-  //     console.log("login successfully");
-
-  //     const data = await fetch("http://localhost:5000/login", {
-  //       // router login 5000
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         email,
-  //         password,
-  //       }),
-  //     });
-  //     const res = await data.json();
-
-  //     if (res.status === 200) {
-  //       alert("Login successfully");
-  //       setInputVal({
-  //         ...inputVal,
-  //         email: "",
-  //         password: "",
-  //       });
-  //     }
-  //   }
-  // };
   const handleLogin = async (e) => {
     e.preventDefault();
     const { email, password } = inputVal;
@@ -87,6 +50,7 @@ function Login() {
       console.log(res);
       if (res.status === 201) {
         localStorage.setItem("usersdatatoken", res.result.token);
+        history("/dash");
         setInputVal({
           ...inputVal,
 

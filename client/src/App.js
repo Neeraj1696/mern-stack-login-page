@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import Homepage from "./components/Homepage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Deshbord from "./components/Deshbord";
+import Error from "./components/Error";
 function App() {
   return (
     <div className="App">
@@ -11,8 +13,10 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/register" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Signup />} />
+          <Route path="/dash" element={<Deshbord />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>
