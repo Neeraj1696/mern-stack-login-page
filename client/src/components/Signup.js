@@ -73,7 +73,7 @@ function Signup() {
 
   return (
     <div>
-      <form action="http://localhost:5000/register">
+      <form action="/register">
         <div>
           <label htmlFor="name">Name</label>
           <input

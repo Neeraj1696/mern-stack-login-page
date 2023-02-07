@@ -35,7 +35,7 @@ function Login() {
     } else {
       console.log("login successfully done");
 
-      const data = await fetch("http://localhost:5000/login", {
+      const data = await fetch("/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -7,7 +7,7 @@ const authenticate = require("../middleware/authenticate");
 // for user registration
 
 router.post("/register", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   const { fname, email, password, cpassword } = req.body;
 
@@ -43,7 +43,7 @@ router.post("/register", async (req, res) => {
 // user login
 
 router.post("/login", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -86,11 +86,26 @@ router.post("/login", async (req, res) => {
 router.get("/validuser", authenticate, async (req, res) => {
   // console.log("Done authenticate");
   try {
-    const validUserOne = await userdb.findOne({ _id: req.userId });
+    const ValidUserOne = await userdb.findOne({ _id: req.userId });
 
-    res.status(201).json({ status: 201, validUserOne });
+    res.status(201).json({ status: 201, ValidUserOne });
   } catch (error) {
     res.status(401).json({ status: 401, error });
+  }
+});
+
+router.get("/logout", authenticate, async (req, res) => {
+  try {
+    req.rootUser.tokens = req.rootUser.tokens.filter((curelem) => {
+      return curelem.token !== req.token;
+    });
+    res.clearCookie("usercookie", { path: "/" });
+
+    req.rootUser.save();
+
+    res.status(201).json(req.rootUser.tokens);
+  } catch (error) {
+    res.status(201).json({ status: 401, error });
   }
 });
 

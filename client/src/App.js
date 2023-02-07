@@ -6,19 +6,22 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Deshbord from "./components/Deshbord";
 import Error from "./components/Error";
+import Context from "./components/ContextProvider/Context";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/dash" element={<Deshbord />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </BrowserRouter>
+      <Context>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route exact path="/" element={<Homepage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Signup />} />
+            <Route path="/dash" element={<Deshbord />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </BrowserRouter>
+      </Context>
     </div>
   );
 }
